@@ -1,17 +1,27 @@
+const words = {
+    "Animals": ["Lion", "Shark", "Eagle", "Giraffe", "Penguin"],
+    "Video Games": ["Minecraft", "Fortnite", "Mario", "Zelda", "Halo"],
+    "Items": ["Backpack", "Laptop", "Water Bottle", "Headphones", "Flashlight"],
+    "People": ["Teacher", "Doctor", "Athlete", "Chef", "Actor"],
+    "Controversial": ["Pineapple Pizza", "NFTs", "AI Art", "Flat Earth", "TikTok Ban"],
+    "Pop Culture": ["Taylor Swift", "Marvel", "Star Wars", "Barbie", "Drake"]
+};
+
 let secretWord = "";
 let players = 0;
 let currentPlayer = 1;
 let imposter = 0;
 
 function startGame() {
-    secretWord = document.getElementById("wordInput").value.trim();
+    const category = document.getElementById("categorySelect").value;
     players = parseInt(document.getElementById("playersInput").value);
 
-    if (!secretWord || players < 3) {
-        alert("Enter a word and at least 3 players");
+    if (players < 3) {
+        alert("Enter at least 3 players");
         return;
     }
 
+    secretWord = words[category][Math.floor(Math.random() * words[category].length)];
     imposter = Math.floor(Math.random() * players) + 1;
 
     document.getElementById("setup").classList.add("hidden");
