@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Imposter Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Imposter Game</h1>
+
+    <div id="setup">
+        <input id="wordInput" type="text" placeholder="Enter the secret word">
+        <input id="playersInput" type="number" placeholder="Number of players">
+        <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="reveal" class="hidden">
+        <h2 id="playerLabel"></h2>
+        <button onclick="revealWord()">Reveal</button>
+        <p id="wordDisplay" class="hidden"></p>
+        <button id="nextBtn" class="hidden" onclick="nextPlayer()">Next Player</button>
+    </div>
+
+    <div id="voting" class="hidden">
+        <h2>Who is the Imposter?</h2>
+        <div id="voteList"></div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
