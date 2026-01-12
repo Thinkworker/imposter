@@ -7,23 +7,41 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>Imposter Game</h1>
+<div class="container fade-in">
 
-    <div id="setup">
-        <input id="wordInput" type="text" placeholder="Enter the secret word">
+    <h1 class="title">Imposter Game</h1>
+
+    <!-- SETUP SCREEN -->
+    <div id="setup" class="card">
+        <h2>Select a Category</h2>
+
+        <select id="categorySelect">
+            <option value="Animals">Animals</option>
+            <option value="Video Games">Video Games</option>
+            <option value="Items">Items</option>
+            <option value="People">People</option>
+            <option value="Controversial">Controversial</option>
+            <option value="Pop Culture">Pop Culture</option>
+        </select>
+
         <input id="playersInput" type="number" placeholder="Number of players">
+
         <button onclick="startGame()">Start Game</button>
     </div>
 
-    <div id="reveal" class="hidden">
+    <!-- REVEAL SCREEN -->
+    <div id="reveal" class="card hidden">
         <h2 id="playerLabel"></h2>
+
         <button onclick="revealWord()">Reveal</button>
-        <p id="wordDisplay" class="hidden"></p>
+
+        <p id="wordDisplay" class="hidden reveal-animation"></p>
+
         <button id="nextBtn" class="hidden" onclick="nextPlayer()">Next Player</button>
     </div>
 
-    <div id="voting" class="hidden">
+    <!-- VOTING SCREEN -->
+    <div id="voting" class="card hidden">
         <h2>Who is the Imposter?</h2>
         <div id="voteList"></div>
     </div>
