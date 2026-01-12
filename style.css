@@ -1,16 +1,30 @@
 body {
-    background: linear-gradient(135deg, #6a5acd, #00bcd4);
+    background: linear-gradient(135deg, #1e1f29, #3a3d5c);
     font-family: "Poppins", sans-serif;
     color: white;
-    text-align: center;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.container {
-    margin-top: 60px;
+.title {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: slide-down 0.8s ease;
 }
 
-input, button {
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 30px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    animation: fade-in 0.8s ease;
+}
+
+input, select, button {
     padding: 12px 18px;
     margin: 10px;
     border-radius: 10px;
@@ -18,15 +32,12 @@ input, button {
     font-size: 16px;
 }
 
-input {
-    width: 250px;
-}
-
 button {
-    background: #ffffff;
-    color: #333;
+    background: #00eaff;
+    color: #000;
     cursor: pointer;
     transition: 0.2s;
+    font-weight: bold;
 }
 
 button:hover {
@@ -37,17 +48,39 @@ button:hover {
     display: none;
 }
 
-#wordDisplay {
+.reveal-animation {
+    animation: pop 0.4s ease;
     font-size: 28px;
-    margin-top: 20px;
     font-weight: bold;
+    margin-top: 20px;
 }
 
 .vote-btn {
     background: #fff;
     color: #333;
-    padding: 10px 20px;
+    padding: 12px 20px;
     margin: 8px;
     border-radius: 8px;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.vote-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
