@@ -4,39 +4,64 @@
     <meta charset="UTF-8">
     <title>Imposter Game</title>
     <link rel="stylesheet" href="style.css">
+    <!-- QR code library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 </head>
 <body>
 
-<div class="container fade-in">
+<div class="container">
 
     <h1 class="title">Imposter Game</h1>
 
     <!-- SETUP SCREEN -->
     <div id="setup" class="card">
-        <h2>Select a Category</h2>
+        <h2>Game Setup</h2>
 
-        <select id="categorySelect">
-            <option value="Animals">Animals</option>
-            <option value="Video Games">Video Games</option>
-            <option value="Items">Items</option>
-            <option value="People">People</option>
-            <option value="Controversial">Controversial</option>
-            <option value="Pop Culture">Pop Culture</option>
-        </select>
+        <div class="setup-row">
+            <div class="setup-column">
+                <h3>Category</h3>
+                <select id="categorySelect">
+                    <option value="Animals">Animals</option>
+                    <option value="Video Games">Video Games</option>
+                    <option value="Items">Items</option>
+                    <option value="People">People</option>
+                    <option value="Controversial">Controversial</option>
+                    <option value="Pop Culture">Pop Culture</option>
+                </select>
 
-        <input id="playersInput" type="number" placeholder="Number of players">
+                <h3>Players</h3>
+                <input id="playersInput" type="number" placeholder="Number of players">
 
-        <button onclick="startGame()">Start Game</button>
+                <button onclick="startGame()">Start Game</button>
+            </div>
+
+            <div class="setup-column qr-section">
+                <h3>Share the Game</h3>
+                <p>Have everyone join this page on their own device.</p>
+                <canvas id="qrCanvas"></canvas>
+                <p class="game-link" id="gameLink"></p>
+            </div>
+        </div>
     </div>
 
     <!-- REVEAL SCREEN -->
     <div id="reveal" class="card hidden">
         <h2 id="playerLabel"></h2>
 
-        <button onclick="revealWord()">Reveal</button>
+        <div class="card-wrapper">
+            <div id="revealCard" class="flip-card">
+                <div class="flip-card-inner" id="flipInner">
+                    <div class="flip-card-front">
+                        <p>Tap to reveal your role</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p id="wordDisplay"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <p id="wordDisplay" class="hidden reveal-animation"></p>
-
+        <button id="revealBtn" onclick="flipCard()">Reveal</button>
         <button id="nextBtn" class="hidden" onclick="nextPlayer()">Next Player</button>
     </div>
 
