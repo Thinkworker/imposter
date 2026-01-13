@@ -1,98 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Imposter Game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Imposter Game</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<div class="container">
-
+  <div class="container">
     <h1 class="title">Imposter Game</h1>
 
-    <!-- PARTY SETUP (HOST / JOIN) -->
+    <!-- PARTY SETUP -->
     <div id="partySetup" class="card">
-        <h2>Play With Friends</h2>
-
-        <div class="setup-row">
-            <div class="setup-column">
-                <h3>Host a Game</h3>
-                <input id="hostNameInput" type="text" placeholder="Your name">
-                <button onclick="createRoom()">Create Room</button>
-                <p id="hostRoomCode" class="room-code-display hidden"></p>
-            </div>
-
-            <div class="setup-column">
-                <h3>Join a Game</h3>
-                <input id="joinCodeInput" type="text" placeholder="Room code">
-                <input id="joinNameInput" type="text" placeholder="Your name">
-                <button onclick="joinRoom()">Join Room</button>
-                <p id="joinError" class="error-text"></p>
-            </div>
+      <h2>Play With Friends</h2>
+      <div class="setup-row">
+        <div class="setup-column">
+          <h3>Host a Game</h3>
+          <input id="hostNameInput" type="text" placeholder="Your name" />
+          <button onclick="createRoom()">Create Room</button>
+          <p id="hostRoomCode" class="room-code-display hidden"></p>
         </div>
+
+        <div class="setup-column">
+          <h3>Join a Game</h3>
+          <input id="joinCodeInput" type="text" placeholder="Room code" />
+          <input id="joinNameInput" type="text" placeholder="Your name" />
+          <button onclick="joinRoom()">Join Room</button>
+          <p id="joinError" class="error-text"></p>
+        </div>
+      </div>
     </div>
 
-    <!-- LOBBY SCREEN -->
+    <!-- LOBBY -->
     <div id="lobby" class="card hidden">
-        <h2>Lobby</h2>
-        <p>Room Code: <span id="roomCodeDisplay"></span></p>
+      <h2>Lobby</h2>
+      <p>Room Code: <span id="roomCodeDisplay"></span></p>
+      <div id="playerList"></div>
 
-        <div id="lobbyInfo" class="lobby-info">
-            <div>
-                <h3>Players</h3>
-                <div id="playerList"></div>
-            </div>
+      <h3>Category</h3>
+      <select id="categorySelect">
+        <option value="Animals">Animals</option>
+        <option value="Video Games">Video Games</option>
+        <option value="Items">Items</option>
+        <option value="People">People</option>
+        <option value="Controversial">Controversial</option>
+        <option value="Pop Culture">Pop Culture</option>
+      </select>
 
-            <div class="lobby-controls">
-                <h3>Game Settings</h3>
-                <label for="categorySelect">Category</label>
-                <select id="categorySelect">
-                    <option value="Animals">Animals</option>
-                    <option value="Video Games">Video Games</option>
-                    <option value="Items">Items</option>
-                    <option value="People">People</option>
-                    <option value="Controversial">Controversial</option>
-                    <option value="Pop Culture">Pop Culture</option>
-                </select>
-                <button id="startGameBtn" onclick="hostStartGame()">Start Game (Host)</button>
-                <p class="hint-text">Game is played on the host's screen. Everyone looks at the same device.</p>
-            </div>
-        </div>
-
-        <button class="secondary-btn" onclick="leaveRoom()">Leave Room</button>
+      <button onclick="hostStartGame()">Start Game</button>
+      <button onclick="leaveRoom()">Leave Room</button>
     </div>
 
-    <!-- REVEAL SCREEN (PASS-THE-DEVICE) -->
+    <!-- REVEAL -->
     <div id="reveal" class="card hidden">
-        <h2 id="playerLabel"></h2>
-
-        <div class="card-wrapper">
-            <div id="revealCard" class="flip-card">
-                <div class="flip-card-inner" id="flipInner">
-                    <div class="flip-card-front">
-                        <p>Tap "Reveal" and pass the device only to this player.</p>
-                    </div>
-                    <div class="flip-card-back">
-                        <p id="wordDisplay"></p>
-                    </div>
-                </div>
+      <h2 id="playerLabel"></h2>
+      <div class="card-wrapper">
+        <div id="revealCard" class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p>Tap "Reveal" and pass the device only to this player.</p>
             </div>
+            <div class="flip-card-back">
+              <p id="wordDisplay"></p>
+            </div>
+          </div>
         </div>
-
-        <button id="revealBtn" onclick="flipCard()">Reveal</button>
-        <button id="nextBtn" class="hidden" onclick="nextPlayer()">Next Player</button>
+      </div>
+      <button id="revealBtn" onclick="flipCard()">Reveal</button>
+      <button id="nextBtn" class="hidden" onclick="nextPlayer()">Next Player</button>
     </div>
 
-    <!-- VOTING SCREEN -->
+    <!-- VOTING -->
     <div id="voting" class="card hidden">
-        <h2>Who is the Imposter?</h2>
-        <div id="voteList"></div>
-        <button class="secondary-btn" onclick="backToLobby()">Back to Lobby</button>
+      <h2>Who is the Imposter?</h2>
+      <div id="voteList"></div>
+      <button onclick="backToLobby()">Back to Lobby</button>
     </div>
+  </div>
 
-</div>
-
-<script type="module" src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
