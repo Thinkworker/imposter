@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Imposter Game</title>
     <link rel="stylesheet" href="style.css">
-    <!-- QR code library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 </head>
 <body>
 
@@ -13,13 +11,42 @@
 
     <h1 class="title">Imposter Game</h1>
 
-    <!-- SETUP SCREEN -->
-    <div id="setup" class="card">
-        <h2>Game Setup</h2>
+    <!-- PARTY SETUP (HOST / JOIN) -->
+    <div id="partySetup" class="card">
+        <h2>Play With Friends</h2>
 
         <div class="setup-row">
             <div class="setup-column">
-                <h3>Category</h3>
+                <h3>Host a Game</h3>
+                <input id="hostNameInput" type="text" placeholder="Your name">
+                <button onclick="createRoom()">Create Room</button>
+                <p id="hostRoomCode" class="room-code-display hidden"></p>
+            </div>
+
+            <div class="setup-column">
+                <h3>Join a Game</h3>
+                <input id="joinCodeInput" type="text" placeholder="Room code">
+                <input id="joinNameInput" type="text" placeholder="Your name">
+                <button onclick="joinRoom()">Join Room</button>
+                <p id="joinError" class="error-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOBBY SCREEN -->
+    <div id="lobby" class="card hidden">
+        <h2>Lobby</h2>
+        <p>Room Code: <span id="roomCodeDisplay"></span></p>
+
+        <div id="lobbyInfo" class="lobby-info">
+            <div>
+                <h3>Players</h3>
+                <div id="playerList"></div>
+            </div>
+
+            <div class="lobby-controls">
+                <h3>Game Settings</h3>
+                <label for="categorySelect">Category</label>
                 <select id="categorySelect">
                     <option value="Animals">Animals</option>
                     <option value="Video Games">Video Games</option>
@@ -28,23 +55,15 @@
                     <option value="Controversial">Controversial</option>
                     <option value="Pop Culture">Pop Culture</option>
                 </select>
-
-                <h3>Players</h3>
-                <input id="playersInput" type="number" placeholder="Number of players">
-
-                <button onclick="startGame()">Start Game</button>
-            </div>
-
-            <div class="setup-column qr-section">
-                <h3>Share the Game</h3>
-                <p>Have everyone join this page on their own device.</p>
-                <canvas id="qrCanvas"></canvas>
-                <p class="game-link" id="gameLink"></p>
+                <button id="startGameBtn" onclick="hostStartGame()">Start Game (Host)</button>
+                <p class="hint-text">Game is played on the host's screen. Everyone looks at the same device.</p>
             </div>
         </div>
+
+        <button class="secondary-btn" onclick="leaveRoom()">Leave Room</button>
     </div>
 
-    <!-- REVEAL SCREEN -->
+    <!-- REVEAL SCREEN (PASS-THE-DEVICE) -->
     <div id="reveal" class="card hidden">
         <h2 id="playerLabel"></h2>
 
@@ -52,7 +71,7 @@
             <div id="revealCard" class="flip-card">
                 <div class="flip-card-inner" id="flipInner">
                     <div class="flip-card-front">
-                        <p>Tap to reveal your role</p>
+                        <p>Tap "Reveal" and pass the device only to this player.</p>
                     </div>
                     <div class="flip-card-back">
                         <p id="wordDisplay"></p>
@@ -69,10 +88,11 @@
     <div id="voting" class="card hidden">
         <h2>Who is the Imposter?</h2>
         <div id="voteList"></div>
+        <button class="secondary-btn" onclick="backToLobby()">Back to Lobby</button>
     </div>
 
 </div>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
