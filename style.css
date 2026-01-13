@@ -1,7 +1,9 @@
+/* General layout */
+
 body {
-    background: radial-gradient(circle at top, #3b82f6, #111827);
+    background: radial-gradient(circle at top, #3b82f6, #020617);
     font-family: "Poppins", sans-serif;
-    color: white;
+    color: #e5e7eb;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -11,44 +13,67 @@ body {
 
 .container {
     text-align: center;
-    max-width: 900px;
+    max-width: 960px;
     width: 100%;
-    padding: 20px;
+    padding: 24px;
 }
 
 .title {
     font-size: 44px;
     margin-bottom: 20px;
-    animation: slide-down 0.8s ease;
+    animation: slide-down 0.6s ease;
 }
 
+/* Cards */
+
 .card {
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(15, 23, 42, 0.92);
     padding: 24px 28px;
     border-radius: 18px;
     backdrop-filter: blur(14px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.5);
-    animation: fade-in 0.8s ease;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+    animation: fade-in 0.6s ease;
 }
+
+/* Setup rows / columns */
 
 .setup-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
 }
 
 .setup-column {
-    flex: 1 1 260px;
+    flex: 1 1 300px;
+    max-width: 360px;
+    text-align: center;
 }
 
-.qr-section {
+/* Lobby layout */
+
+.lobby-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 16px;
+    text-align: left;
+}
+
+.lobby-info > div {
+    flex: 1 1 260px;
+    max-width: 360px;
+}
+
+.lobby-controls {
     border-left: 1px solid rgba(148, 163, 184, 0.4);
-    padding-left: 20px;
+    padding-left: 18px;
 }
 
 @media (max-width: 700px) {
-    .qr-section {
+    .lobby-controls {
         border-left: none;
         border-top: 1px solid rgba(148, 163, 184, 0.4);
         padding-left: 0;
@@ -56,32 +81,29 @@ body {
     }
 }
 
-h2, h3 {
-    margin-top: 0;
-}
+/* Inputs & buttons */
 
 input, select, button {
-    padding: 12px 18px;
-    margin: 10px 0;
+    padding: 12px 16px;
+    margin: 8px 0;
     border-radius: 10px;
     border: none;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 input, select {
     width: 100%;
     background: rgba(15, 23, 42, 0.9);
-    color: white;
+    color: #e5e7eb;
     border: 1px solid rgba(148, 163, 184, 0.7);
 }
 
 button {
     background: #22d3ee;
-    color: #0f172a;
+    color: #020617;
     cursor: pointer;
     transition: 0.18s;
     font-weight: 600;
-    width: 100%;
 }
 
 button:hover {
@@ -89,11 +111,66 @@ button:hover {
     box-shadow: 0 8px 20px rgba(34, 211, 238, 0.4);
 }
 
-.hidden {
-    display: none;
+.secondary-btn {
+    background: transparent;
+    color: #e5e7eb;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    width: auto;
+    padding: 8px 16px;
+    margin-top: 12px;
 }
 
-/* Flip card */
+/* Text helpers */
+
+.error-text {
+    color: #fb7185;
+    font-size: 13px;
+    min-height: 18px;
+}
+
+.hint-text {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 6px;
+}
+
+.room-code-display {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* Player list */
+
+#playerList {
+    background: rgba(15, 23, 42, 0.7);
+    padding: 10px 12px;
+    border-radius: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.player-row {
+    padding: 6px 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.9);
+    font-size: 14px;
+}
+
+.player-row .host-tag {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: rgba(22, 163, 74, 0.2);
+    color: #4ade80;
+}
+
+/* Flip card (reveal) */
+
 .card-wrapper {
     display: flex;
     justify-content: center;
@@ -102,8 +179,8 @@ button:hover {
 
 .flip-card {
     background-color: transparent;
-    width: 260px;
-    height: 160px;
+    width: 280px;
+    height: 170px;
     perspective: 1000px;
 }
 
@@ -137,7 +214,7 @@ button:hover {
     background: linear-gradient(135deg, #0f172a, #1e293b);
     border: 1px solid rgba(148, 163, 184, 0.6);
     color: #e5e7eb;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .flip-card-back {
@@ -148,18 +225,10 @@ button:hover {
     font-weight: 700;
 }
 
-/* QR section */
-#qrCanvas {
-    margin-top: 10px;
-    background: white;
-    border-radius: 10px;
-}
+/* Voting */
 
-.game-link {
-    font-size: 12px;
-    color: #cbd5f5;
-    margin-top: 8px;
-    word-break: break-all;
+#voteList {
+    margin-top: 16px;
 }
 
 .vote-btn {
@@ -172,6 +241,7 @@ button:hover {
     transition: 0.18s;
     border: none;
     font-weight: 600;
+    min-width: 160px;
 }
 
 .vote-btn:hover {
@@ -179,13 +249,20 @@ button:hover {
     box-shadow: 0 8px 20px rgba(248, 250, 252, 0.4);
 }
 
+/* Utility */
+
+.hidden {
+    display: none;
+}
+
 /* Animations */
+
 @keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slide-down {
-    from { opacity: 0; transform: translateY(-20px); }
+    from { opacity: 0; transform: translateY(-16px); }
     to { opacity: 1; transform: translateY(0); }
 }
